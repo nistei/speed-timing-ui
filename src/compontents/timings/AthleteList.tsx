@@ -35,7 +35,7 @@ const AthleteList = () => {
                             </thead>
                             <tbody className="bg-white divide-y divide-gray-200">
                                 {athletes.map((a) => (
-                                    <tr>
+                                    <tr key={a.id}>
                                         <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-500">
                                             {a.id}
                                         </td>

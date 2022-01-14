@@ -7,12 +7,12 @@ import RankingView from "./views/ranking/RankingView";
 export default function App() {
     return (
         <div>
-            <div className="w-full h-12 bg-gray-800 text-white px-6 py-1 flex flex-row">
+            <div className="w-full h-12 bg-gray-800 text-white px-6 pt-3 flex flex-row">
                 <Link href="/newest">
-                    <a className="mx-2">Newest</a>
+                    <a className="mx-2">Aktuell</a>
                 </Link>
                 <Link href="/ranking">
-                    <a className="mx-2">Ranking</a>
+                    <a className="mx-2">Rangliste</a>
                 </Link>
                 <Link href="/admin">
                     <a className="mx-2">Admin</a>

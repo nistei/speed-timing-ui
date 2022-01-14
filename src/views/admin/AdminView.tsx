@@ -69,21 +69,21 @@ const NewTimeForm = ({ apiKey, apiKeyEntered }: { apiKey: string | null, apiKeyE
         if (startNumberValue && !Number.isNaN(parseInt(startNumberValue))) {
             setStartNumber(parseInt(startNumberValue));
         } else {
-            errors.push('Start Number must be a number');
+            errors.push('Startnummer muss eine Zahl sein');
         }
 
         const parsedStartTime = validateTime(startTimeValue);
         if (parsedStartTime) {
             setStartTime(parsedStartTime * 1000);
         } else {
-            errors.push('Start Time must be a number');
+            errors.push('Startzeit muss eine Zahl sein');
         }
 
         const parsedEndTime = validateTime(endTimeValue);
         if (parsedEndTime) {
             setEndTime(parsedEndTime * 1000);
         } else {
-            errors.push('End Time must be a number');
+            errors.push('Endzeit muss eine Zahl sein');
         }
 
         setErrors(errors);
@@ -102,7 +102,7 @@ const NewTimeForm = ({ apiKey, apiKeyEntered }: { apiKey: string | null, apiKeyE
             athleteId: startNumber!,
             startTimeMs: startTime!,
             stopTimeMs: endTime!,
-        }, apiKey!).catch((e) => alert('Error while submitting timing: ' + e.toString()))
+        }, apiKey!).catch((e) => alert('Fehler während der Erstellung: ' + e.toString()))
     }
 
     return (
@@ -110,30 +110,30 @@ const NewTimeForm = ({ apiKey, apiKeyEntered }: { apiKey: string | null, apiKeyE
             <h1 className="text-3xl">New Time</h1>
 
             <div className="flex justify-between gap-x-5">
-                Start Number
+                Startnummer
 
                 <input ref={startNumberInput} type="text" onInput={handleNewInput} />
             </div>
 
             <div className="flex justify-between gap-x-5">
-                Start Time
+                Startzeit
 
                 <input ref={startTimeInput} type="text" onInput={handleNewInput} />
             </div>
 
             <div className="flex justify-between gap-x-5">
-                End Time
+                Endzeit
 
                 <input ref={endTimeInput} type="text" onInput={handleNewInput} />
             </div>
 
             <div className="flex flex-col text-xl text-red-500">
                 {errors.map((error) => (
-                    <span>{error}</span>
+                    <span key={error}>{error}</span>
                 ))}
             </div>
 
-            <button className="mt-5" type="button" disabled={!canSubmit || !apiKeyEntered} onClick={handleSubmit}>Submit</button>
+            <button className="mt-5" type="button" disabled={!canSubmit || !apiKeyEntered} onClick={handleSubmit}>Hinzufügen</button>
         </div>
     )
 }
@@ -168,27 +168,27 @@ const NewAthleteForm = ({ apiKey, apiKeyEntered }: { apiKey: string | null, apiK
         createAthlete({
             firstName: firstName!,
             lastName: lastName!,
-        }, apiKey!).then(r => alert('Athlete entered.')).catch((e) => alert('Error while submitting athlete: ' + e.toString()))
+        }, apiKey!).then(r => alert('Athlet hinzugefügt.')).catch((e) => alert('Fehler während der Erstellung: ' + e.toString()))
     }
 
 
     return (
         <div className="flex flex-col gap-y-2">
-            <h1 className="text-3xl">New Athlete</h1>
+            <h1 className="text-3xl">Neuer Athlet</h1>
 
             <div className="flex justify-between gap-x-5">
-                First Name
+                Vorname
 
                 <input ref={firstNameInput} type="text" onInput={handleNewInput} />
             </div>
 
             <div className="flex justify-between gap-x-5">
-                Last Name
+                Nachname
 
                 <input ref={lastNameInput} type="text" onInput={handleNewInput} />
             </div>
 
-            <button className="mt-5" type="button" disabled={!canSubmit || !apiKeyEntered} onClick={handleSubmit}>Submit</button>
+            <button className="mt-5" type="button" disabled={!canSubmit || !apiKeyEntered} onClick={handleSubmit}>Hinzufügen</button>
         </div>
     )
 }

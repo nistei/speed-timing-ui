@@ -1,26 +1,39 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Link, Route, Redirect } from "wouter";
+import NewestView from "./views/newest/NewestView";
+import AdminView from "./views/admin/AdminView";
+import AthleteView from "./views/athletes/AthleteView";
+import RankingView from "./views/ranking/RankingView";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export default function App() {
+    return (
+        <div>
+            <div className="w-full h-12 bg-gray-800 text-white px-6 py-1 flex flex-row">
+                <Link href="/newest">
+                    <a className="mx-2">Newest</a>
+                </Link>
+                <Link href="/ranking">
+                    <a className="mx-2">Ranking</a>
+                </Link>
+                <Link href="/admin">
+                    <a className="mx-2">Admin</a>
+                </Link>
+            </div>
+
+            <Route path="/">
+                <Redirect to="/newest" />
+            </Route>
+            <Route path="/newest">
+                <NewestView />
+            </Route>
+            <Route path="/ranking">
+                <RankingView />
+            </Route>
+            <Route path="/admin">
+                <AdminView />
+            </Route>
+            <Route path="/athletes/:athleteId">
+                <AthleteView />
+            </Route>
+        </div>
+    );
 }
-
-export default App;

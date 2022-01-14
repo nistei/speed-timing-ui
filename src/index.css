@@ -1,3 +1,15 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+input {
+    @apply bg-gray-200;
+}
+
+button[type=button] {
+    @apply bg-gray-200;
+}
+
+button[type=button][disabled] {
+    @apply opacity-50;
+}

@@ -1,6 +1,8 @@
+import RankingTable from "./RankingTable";
+
 const RankingView = () => {
     return (
-        <h1>Not implemented</h1>
+        <RankingTable />
     )
 };
 

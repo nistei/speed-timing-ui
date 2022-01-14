@@ -19,20 +19,22 @@ const AthleteView = () => {
     }, [fetchData]);
 
     return (
-        <div className="w-full p-10">
-            <h1 className="text-4xl mb-10">{athlete?.firstName} {athlete?.lastName}</h1>
+        <div>
+            <div className="w-full p-10">
+                <h1 className="text-4xl mb-10">{athlete?.firstName} {athlete?.lastName}</h1>
 
-            <div className="flex items-center gap-x-5 mb-6">
-                <h2 className="text-5xl">1</h2>
-                <h2 className="text-2xl">Rank</h2>
+                <div className="flex items-center gap-x-5 mb-6">
+                    <h2 className="text-5xl">1</h2>
+                    <h2 className="text-2xl">Rank</h2>
+                </div>
+
+                <div className="flex items-center gap-x-5 mb-10">
+                    <h2 className="text-5xl">{athlete?.id}</h2>
+                    <h2 className="text-2xl">Start Number</h2>
+                </div>
             </div>
 
-            <div className="flex items-center gap-x-5 mb-10">
-                <h2 className="text-5xl">{athlete?.id}</h2>
-                <h2 className="text-2xl">Start Number</h2>
-            </div>
-
-            <TimingsList athleteId={Number(params?.athleteId)} />
+            <TimingsList athleteId={Number(params?.athleteId)}/>
         </div>
     )
 }

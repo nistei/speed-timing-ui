@@ -39,6 +39,7 @@ const NewTimeForm = ({ apiKey, apiKeyEntered }: { apiKey: string | null, apiKeyE
     const [endTime, setEndTime] = useState<number | null>(null);
 
     const [canSubmit, setCanSubmit] = useState(false);
+    const [showSuccess, setShowSuccess] = useState(false);
     const [errors, setErrors] = useState<string[]>([]);
 
     const startNumberInput = useRef<HTMLInputElement>(null);
@@ -97,17 +98,22 @@ const NewTimeForm = ({ apiKey, apiKeyEntered }: { apiKey: string | null, apiKeyE
 
     useEffect(handleNewInput, []);
 
+    const flashSuccess = () => {
+        setShowSuccess(true);
+        setTimeout(() => setShowSuccess(false), 5000);
+    }
+
     const handleSubmit = () => {
         createTiming({
             athleteId: startNumber!,
             startTimeMs: startTime!,
             stopTimeMs: endTime!,
-        }, apiKey!).catch((e) => alert('Fehler während der Erstellung: ' + e.toString()))
+        }, apiKey!).then(flashSuccess).catch((e) => alert('Fehler während der Erstellung: ' + e.toString()))
     }
 
     return (
         <div className="flex flex-col gap-y-2">
-            <h1 className="text-3xl">New Time</h1>
+            <h1 className="text-3xl">Neue Zeit</h1>
 
             <div className="flex justify-between gap-x-5">
                 Startnummer
@@ -134,6 +140,13 @@ const NewTimeForm = ({ apiKey, apiKeyEntered }: { apiKey: string | null, apiKeyE
             </div>
 
             <button className="mt-5" type="button" disabled={!canSubmit || !apiKeyEntered} onClick={handleSubmit}>Hinzufügen</button>
+
+            {
+                showSuccess &&
+                <div className="flex flex-col text-xl text-green-400">
+                    <span>Erstellt</span>
+                </div>
+            }
         </div>
     )
 }
